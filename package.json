@@ -12,13 +12,13 @@
     "file-icon-theme",
     "file icons"
   ],
-  "homepage": "https://github.com/wilfriedago/vscode-symbols/blob/main/README.md",
+  "homepage": "https://github.com/wilfriedago/vscode-symbols-icon-theme/blob/main/README.md",
   "bugs": {
-    "url": "https://github.com/wilfriedago/vscode-symbols/issues"
+    "url": "https://github.com/wilfriedago/vscode-symbols-icon-theme/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wilfriedago/vscode-symbols.git"
+    "url": "https://github.com/wilfriedago/vscode-symbols-icon-theme.git"
   },
   "author": {
     "name": "Wilfried AGO",
