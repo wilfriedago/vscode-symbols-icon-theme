@@ -1,0 +1,87 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to run the workflow on'
+        required: false
+        default: 'latest'
+      branch:
+        description: 'Branch to run the workflow on'
+        required: false
+        default: 'main'
+
+concurrency:
+  group: ${{ github.job }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  STORE_PATH: ''
+  PACKAGE_VERSION: ''
+  PACKAGE_NAME: ''
+  PACKAGE_DISPLAY_NAME: ''
+
+jobs:
+  publish:
+    name: 🚀 Publish to Visual Studio Marketplace
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🛑 Setting up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: 🪄 Installing pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: 🏪 Getting pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: ♻️ Setting up pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: 📥 Installing project dependencies
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm add -g @vscode/vsce
+
+      - name: 📦 Building package
+        run: vsce package
+
+      - name: 🔍 Getting metadata
+        run: |
+          echo "PACKAGE_VERSION=$(node -p -e "require('./package.json').version")" >> $GITHUB_ENV
+          echo "PACKAGE_NAME=$(node -p -e "require('./package.json').name")" >> $GITHUB_ENV
+          echo "PACKAGE_DISPLAY_NAME=$(node -p -e "require('./package.json').displayName")" >> $GITHUB_ENV
+
+      - name: 🌐 Publish to Open VSX Registry
+        uses: HaaLeo/publish-vscode-extension@v1
+        with:
+          pat: ${{ secrets.OPEN_VSX_TOKEN }}
+          extensionFile: ${{ env.PACKAGE_NAME }}-${{ env.PACKAGE_VERSION }}.vsix
+
+      - name: 🌐 Publish to Visual Studio Marketplace
+        uses: HaaLeo/publish-vscode-extension@v1
+        with:
+          pat: ${{ secrets.VS_MARKETPLACE_TOKEN }}
+          registryUrl: https://marketplace.visualstudio.com
+          extensionFile: ${{ env.PACKAGE_NAME }}-${{ env.PACKAGE_VERSION }}.vsix
