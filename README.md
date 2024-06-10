@@ -4,7 +4,7 @@
 
 # Symbols
 
-A file icon for VS Code
+A file icon for Visual Studio Code
 
 ![Preview of extension](https://github.com/misolori/vscode-symbols/raw/main/preview.png)
 
