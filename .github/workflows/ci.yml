@@ -23,9 +23,6 @@ concurrency:
   group: ${{ github.job }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  STORE_PATH: ''
-
 jobs:
   ci:
     name: 🛠️  Continious Integration
@@ -37,40 +34,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🛑 Setting up Node
-        uses: actions/setup-node@v4
+      - name: 🚀 Setup Biome
+        uses: biomejs/setup-biome@v2
         with:
-          node-version-file: '.nvmrc'
+          version: latest
 
-      - name: 🪄 Installing pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-
-      - name: 🏪 Getting pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: ♻️ Setting up pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: 📥 Installing project dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: ☣️ Check for Vulnerabilities
-        run: pnpm audit --production --audit-level=high
-
-      - name: 💅 Formatting
-        run: pnpm format
-
-      - name: 🔎 Linting
-        run: pnpm lint
-
-      - name: 🔬 Checking
-        run: pnpm check
+      - name: 🧪 Run Biome
+        run: biome ci .
