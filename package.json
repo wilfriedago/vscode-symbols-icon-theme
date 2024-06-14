@@ -3,8 +3,16 @@
 	"displayName": "Symbols  Icon Theme",
 	"version": "1.0.0",
 	"description": "A simple file icon theme for Visual Studio Code",
-	"categories": ["Themes"],
-	"keywords": ["icons", "theme", "icon-theme", "file-icon-theme", "file icons"],
+	"categories": [
+		"Themes"
+	],
+	"keywords": [
+		"icons",
+		"theme",
+		"icon-theme",
+		"file-icon-theme",
+		"file icons"
+	],
 	"homepage": "https://github.com/wilfriedago/vscode-symbols-icon-theme/blob/main/README.md",
 	"bugs": {
 		"url": "https://github.com/wilfriedago/vscode-symbols-icon-theme/issues"
@@ -61,7 +69,9 @@
 			}
 		]
 	},
-	"activationEvents": ["onStartupFinished"],
+	"activationEvents": [
+		"onStartupFinished"
+	],
 	"devDependencies": {
 		"@biomejs/biome": "1.8.1",
 		"@semantic-release/changelog": "^6.0.3",
@@ -84,7 +94,10 @@
 		},
 		"virtualWorkspaces": true
 	},
-	"extensionKind": ["ui", "workspace"],
+	"extensionKind": [
+		"ui",
+		"workspace"
+	],
 	"release-it": {
 		"git": {
 			"commitMessage": "chore: release v${version}"
