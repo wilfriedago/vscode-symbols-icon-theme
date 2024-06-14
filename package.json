@@ -22,11 +22,11 @@
 	"main": "./src/extension.js",
 	"scripts": {
 		"check": "biome check .",
-		"check:fix": "biome check --apply .",
+		"check:fix": "biome check --write .",
 		"format": "biome format .",
 		"format:fix": "biome format --write .",
 		"lint": "biome lint .",
-		"lint:fix": "biome lint --apply .",
+		"lint:fix": "biome lint --write .",
 		"release": "release-it",
 		"svgo": "svgo -f src/icons/files -f src/icons/folders"
 	},
