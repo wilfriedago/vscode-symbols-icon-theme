@@ -78,7 +78,7 @@
 		"@semantic-release/git": "^10.0.1",
 		"@types/vscode": "^1.90.0",
 		"lefthook": "^1.6.16",
-		"release-it": "^17.3.0",
+		"release-it": "^17.4.0",
 		"semantic-release": "^24.0.0",
 		"svgo": "^3.3.2"
 	},
