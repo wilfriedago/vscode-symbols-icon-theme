@@ -18,8 +18,8 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1(semantic-release@24.0.0)
       '@types/vscode':
-        specifier: ^1.90.0
-        version: 1.90.0
+        specifier: ^1.91.0
+        version: 1.91.0
       lefthook:
         specifier: ^1.6.16
         version: 1.6.16
@@ -316,8 +316,8 @@ packages:
   '@types/semver@7.5.8':
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
 
-  '@types/vscode@1.90.0':
-    resolution: {integrity: sha512-oT+ZJL7qHS9Z8bs0+WKf/kQ27qWYR3trsXpq46YDjFqBsMLG4ygGGjPaJ2tyrH0wJzjOEmDyg9PDJBBhWg9pkQ==}
+  '@types/vscode@1.91.0':
+    resolution: {integrity: sha512-PgPr+bUODjG3y+ozWUCyzttqR9EHny9sPAfJagddQjDwdtf66y2sDKJMnFZRuzBA2YtBGASqJGPil8VDUPvO6A==}
 
   agent-base@7.1.1:
     resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
@@ -2701,7 +2701,7 @@ snapshots:
 
   '@types/semver@7.5.8': {}
 
-  '@types/vscode@1.90.0': {}
+  '@types/vscode@1.91.0': {}
 
   agent-base@7.1.1:
     dependencies:
